@@ -1,4 +1,5 @@
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+let preloader = document.querySelector('.preloader');
 
 if(!ScrollTrigger.isTouch){
     window.addEventListener('load', ()=>{
@@ -8,6 +9,16 @@ if(!ScrollTrigger.isTouch){
             smooth: 3,
             effects: true,
         })
+
+        function preloaderOf(){
+            if(preloader.classList.length == 1){
+                preloader.classList.add('disable');
+                setTimeout(preloaderOf, 1000)
+            }else{
+                preloader.style.display = 'none';
+            }
+        }
+        preloaderOf();
 
         let animetionElementOne = '.preview';
         let animetionElementsLeft = document.querySelectorAll('.gallery__item:first-child > *');
